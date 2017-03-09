@@ -144,7 +144,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mChildEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                FriendlyMessage message = dataSnapshot.getValue(FriendlyMessage.class);
+                mMessageAdapter.add(message);
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
         mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
