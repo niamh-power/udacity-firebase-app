@@ -84,6 +84,12 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     
     func configureDatabase() {
         ref = FIRDatabase.database().reference()
+        _refHandle = ref.child("messages").observe(.childAdded) {
+            (snapshot: FIRDataSnapshot) in
+                self.messages.append(snapshot)
+            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
+            self.scrollToBottomMessage()
+        }
     }
     
     func configureStorage() {
@@ -217,6 +223,13 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // dequeue cell
         let cell: UITableViewCell! = messagesTable.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        let messageSnapshot: FIRDataSnapshot! = messages[indexPath.row]
+        let message = messageSnapshot.value! as! [String: String]
+        let name = message[Constants.MessageFields.name] ?? "[username]"
+        let text = message[Constants.MessageFields.text] ?? "[message]"
+        cell!.textLabel?.text = name + ": " + text
+        cell!.imageView?.image = self.placeholderImage
+
         return cell!
         // TODO: update cell to display message data
     }
