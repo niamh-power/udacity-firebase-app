@@ -198,13 +198,11 @@ public class MainActivity extends AppCompatActivity {
         fetchConfig();
     }
 
-    private void fetchConfig() {
+    public void fetchConfig() {
         long cacheExpiration = 3600;
-
-        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()){
+        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
         }
-
         mFirebaseRemoteConfig.fetch(cacheExpiration)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -225,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
     private void applyRetrievedLengthLimit() {
         Long friendly_msg_length = mFirebaseRemoteConfig.getLong(FRIENDLY_MSG_LENGTH_KEY);
         mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(friendly_msg_length.intValue())});
+        Log.d(TAG, FRIENDLY_MSG_LENGTH_KEY + " = " + friendly_msg_length);
     }
 
     @Override
