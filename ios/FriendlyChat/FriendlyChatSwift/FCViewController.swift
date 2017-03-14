@@ -17,6 +17,7 @@
 import UIKit
 import Firebase
 import FirebaseAuthUI
+import FirebaseGoogleAuthUI
 
 // MARK: - FCViewController
 
@@ -64,6 +65,9 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Config
     
     func configureAuth() {
+        let provider: [FUIAuthProvider] = [FUIGoogleAuth()]
+        FUIAuth.defaultAuthUI()?.providers = provider
+
         _authHandle = FIRAuth.auth()?.addStateDidChangeListener { (auth: FIRAuth, user: FIRUser?) in
             self.messages.removeAll(keepingCapacity: false)
             self.messagesTable.reloadData()
