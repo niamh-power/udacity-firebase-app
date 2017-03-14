@@ -238,16 +238,35 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // dequeue cell
-        let cell: UITableViewCell! = messagesTable.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        var cell: UITableViewCell! = messagesTable.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
         let messageSnapshot: FIRDataSnapshot! = messages[indexPath.row]
         let message = messageSnapshot.value! as! [String: String]
         let name = message[Constants.MessageFields.name] ?? "[username]"
-        let text = message[Constants.MessageFields.text] ?? "[message]"
-        cell!.textLabel?.text = name + ": " + text
-        cell!.imageView?.image = self.placeholderImage
+
+        if let imageUrl = message[Constants.MessageFields.imageUrl] {
+            cell!.textLabel?.text = "sent by: \(name)"
+
+            FIRStorage.storage().reference(forURL: imageUrl).data(withMaxSize: INT64_MAX, completion: { (data, error) in
+                guard error == nil else {
+                    print("error downloading: \(error!)")
+                    return
+                }
+
+                let messageImage = UIImage.init(data: data!, scale: 50)
+                if cell == tableView.cellForRow(at: indexPath) {
+                    DispatchQueue.main.async {
+                        cell.imageView?.image = messageImage
+                        cell.setNeedsLayout()
+                    }
+                }
+            })
+        } else {
+            let text = message[Constants.MessageFields.text] ?? "[message]"
+            cell!.textLabel?.text = name + ": " + text
+            cell!.imageView?.image = self.placeholderImage
+        }
 
         return cell!
-        // TODO: update cell to display message data
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -289,7 +308,7 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension FCViewController: UIImagePickerControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String:Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // constant to hold the information about the photo
         if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage, let photoData = UIImageJPEGRepresentation(photo, 0.8) {
             // call function to upload photo message
