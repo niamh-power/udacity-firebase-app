@@ -14,10 +14,22 @@
 		5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */; };
 		5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */; };
 		711D3DEE1E78049B004522AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 711D3DED1E78049B004522AF /* GoogleService-Info.plist */; };
+		714B01341E79535A00EBE1A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B01331E79535A00EBE1A1 /* Message.swift */; };
+		714B013C1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B013B1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift */; };
 		A92476E81D6F96C300A96C4B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */; };
 		A92476E91D6F96C300A96C4B /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */; };
 		DBBAAE069585D787FD06FE15 /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		714B013E1E79539700EBE1A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5F5A53441ADE670C00F81DF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F5A53781ADE67D500F81DF0;
+			remoteInfo = FriendlyChatSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		107960721C612531003DB6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,6 +42,10 @@
 		5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCViewController.swift; sourceTree = "<group>"; };
 		711D3DED1E78049B004522AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		714B01331E79535A00EBE1A1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		714B01391E79539700EBE1A1 /* FriendlyChatSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyChatSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		714B013B1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyChatSwiftUITests.swift; sourceTree = "<group>"; };
+		714B013D1E79539700EBE1A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
@@ -42,6 +58,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBBAAE069585D787FD06FE15 /* Pods_FriendlyChatSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		714B01361E79539700EBE1A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				5F5A537A1ADE67D500F81DF0 /* FriendlyChatSwift */,
+				714B013A1E79539700EBE1A1 /* FriendlyChatSwiftUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				12DD0A4A089E5CEFC6F01148 /* Pods */,
 				9AD5D3AA9FEE4AAC1BAC7C5F /* Frameworks */,
@@ -83,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				5F5A53791ADE67D500F81DF0 /* FriendlyChatSwift.app */,
+				714B01391E79539700EBE1A1 /* FriendlyChatSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +115,7 @@
 		5F5A537A1ADE67D500F81DF0 /* FriendlyChatSwift */ = {
 			isa = PBXGroup;
 			children = (
+				714B01321E79534F00EBE1A1 /* Models */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */,
 				2C595F041B34B73A00355AE7 /* Constants.swift */,
@@ -107,6 +133,23 @@
 				2C85627A1AFAB65F00F0B24B /* shared */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		714B01321E79534F00EBE1A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				714B01331E79535A00EBE1A1 /* Message.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		714B013A1E79539700EBE1A1 /* FriendlyChatSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				714B013B1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift */,
+				714B013D1E79539700EBE1A1 /* Info.plist */,
+			);
+			path = FriendlyChatSwiftUITests;
 			sourceTree = "<group>";
 		};
 		9AD5D3AA9FEE4AAC1BAC7C5F /* Frameworks */ = {
@@ -140,13 +183,31 @@
 			productReference = 5F5A53791ADE67D500F81DF0 /* FriendlyChatSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
+		714B01381E79539700EBE1A1 /* FriendlyChatSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 714B01401E79539700EBE1A1 /* Build configuration list for PBXNativeTarget "FriendlyChatSwiftUITests" */;
+			buildPhases = (
+				714B01351E79539700EBE1A1 /* Sources */,
+				714B01361E79539700EBE1A1 /* Frameworks */,
+				714B01371E79539700EBE1A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				714B013F1E79539700EBE1A1 /* PBXTargetDependency */,
+			);
+			name = FriendlyChatSwiftUITests;
+			productName = FriendlyChatSwiftUITests;
+			productReference = 714B01391E79539700EBE1A1 /* FriendlyChatSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		5F5A53441ADE670C00F81DF0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Google Inc.";
 				TargetAttributes = {
@@ -162,6 +223,11 @@
 								enabled = 0;
 							};
 						};
+					};
+					714B01381E79539700EBE1A1 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5F5A53781ADE67D500F81DF0;
 					};
 				};
 			};
@@ -179,6 +245,7 @@
 			projectRoot = "";
 			targets = (
 				5F5A53781ADE67D500F81DF0 /* FriendlyChatSwift */,
+				714B01381E79539700EBE1A1 /* FriendlyChatSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +261,13 @@
 				2C8562851AFAB65F00F0B24B /* Images.xcassets in Resources */,
 				A92476E91D6F96C300A96C4B /* RobotoMono-Regular.ttf in Resources */,
 				711D3DEE1E78049B004522AF /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		714B01371E79539700EBE1A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,12 +327,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */,
+				714B01341E79535A00EBE1A1 /* Message.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		714B01351E79539700EBE1A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				714B013C1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		714B013F1E79539700EBE1A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F5A53781ADE67D500F81DF0 /* FriendlyChatSwift */;
+			targetProxy = 714B013E1E79539700EBE1A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		107960711C612531003DB6CC /* Main.storyboard */ = {
@@ -401,6 +492,43 @@
 			};
 			name = Release;
 		};
+		714B01411E79539700EBE1A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = FriendlyChatSwiftUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = npower.FriendlyChatSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FriendlyChatSwift;
+			};
+			name = Debug;
+		};
+		714B01421E79539700EBE1A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = FriendlyChatSwiftUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = npower.FriendlyChatSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FriendlyChatSwift;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -421,6 +549,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		714B01401E79539700EBE1A1 /* Build configuration list for PBXNativeTarget "FriendlyChatSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				714B01411E79539700EBE1A1 /* Debug */,
+				714B01421E79539700EBE1A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
