@@ -108,11 +108,33 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Remote Config
     
     func configureRemoteConfig() {
-        // TODO: configure remote configuration settings
+        let remoteConfigSettings = FIRRemoteConfigSettings(developerModeEnabled: true)
+        remoteConfig = FIRRemoteConfig.remoteConfig()
+        remoteConfig.configSettings = remoteConfigSettings!
+
     }
     
     func fetchConfig() {
-        // TODO: update to the current coniguratation
+        var expirationDuration: Double = 3600
+
+        if remoteConfig.configSettings.isDeveloperModeEnabled {
+            expirationDuration = 0
+        }
+
+        remoteConfig.fetch(withExpirationDuration: expirationDuration) { (status, error) in
+            if status == .success {
+                print("config fetched")
+                self.remoteConfig.activateFetched()
+                let friendlyMsgLength = self.remoteConfig["friendly_msg_length"]
+                if friendlyMsgLength.source != .static {
+                    self.msglength = friendlyMsgLength.numberValue!
+                    print("friend msg length config: \(self.msglength)")
+                }
+            } else {
+                print("config not fetched")
+                print("error: \(error)")
+            }
+        }
     }
     
     // MARK: Sign In and Out
@@ -135,6 +157,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             
             configureDatabase()
             configureStorage()
+            configureRemoteConfig()
         }
     }
     
@@ -238,7 +261,7 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // dequeue cell
-        var cell: UITableViewCell! = messagesTable.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        let cell: UITableViewCell! = messagesTable.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
         let messageSnapshot: FIRDataSnapshot! = messages[indexPath.row]
         let message = messageSnapshot.value! as! [String: String]
         let name = message[Constants.MessageFields.name] ?? "[username]"
@@ -274,25 +297,29 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            // TODO: if message contains an image, then display the image
+        guard !messageTextField.isFirstResponder else { return }
+
+        let messageSnapshot: FIRDataSnapshot! = messages[(indexPath as NSIndexPath).row]
+        let message = messageSnapshot.value as! [String: String]
+
+        if let imageUrl = message[Constants.MessageFields.imageUrl] {
+            if let cachedImage = imageCache.object(forKey: imageUrl as NSString) {
+                showImageDisplay(cachedImage)
+            } else {
+                FIRStorage.storage().reference(forURL: imageUrl).data(withMaxSize: INT64_MAX){ (data, error) in
+                    guard error == nil else {
+                        print("Error downloading: \(error!)")
+                        return
+                    }
+                    self.showImageDisplay(UIImage.init(data: data!)!)
+                }
+            }
+        }
     }
-    
+
     // MARK: Show Image Display
     
     func showImageDisplay(_ image: UIImage) {
-        dismissImageRecognizer.isEnabled = true
-        dismissKeyboardRecognizer.isEnabled = false
-        messageTextField.isEnabled = false
-        UIView.animate(withDuration: 0.25) {
-            self.backgroundBlur.effect = UIBlurEffect(style: .light)
-            self.imageDisplay.alpha = 1.0
-            self.imageDisplay.image = image
-        }
-    }
-    
-    // MARK: Show Image Display
-    
-    func showImageDisplay(image: UIImage) {
         dismissImageRecognizer.isEnabled = true
         dismissKeyboardRecognizer.isEnabled = false
         messageTextField.isEnabled = false
