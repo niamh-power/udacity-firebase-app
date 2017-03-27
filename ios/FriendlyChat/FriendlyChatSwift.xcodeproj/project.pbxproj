@@ -15,7 +15,7 @@
 		5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */; };
 		711D3DEE1E78049B004522AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 711D3DED1E78049B004522AF /* GoogleService-Info.plist */; };
 		714B01341E79535A00EBE1A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B01331E79535A00EBE1A1 /* Message.swift */; };
-		714B013C1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B013B1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift */; };
+		714B01441E7960D100EBE1A1 /* FirebaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B01431E7960D100EBE1A1 /* FirebaseMock.swift */; };
 		A92476E81D6F96C300A96C4B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */; };
 		A92476E91D6F96C300A96C4B /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */; };
 		DBBAAE069585D787FD06FE15 /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */; };
@@ -44,8 +44,7 @@
 		711D3DED1E78049B004522AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		714B01331E79535A00EBE1A1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		714B01391E79539700EBE1A1 /* FriendlyChatSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyChatSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		714B013B1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyChatSwiftUITests.swift; sourceTree = "<group>"; };
-		714B013D1E79539700EBE1A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		714B01431E7960D100EBE1A1 /* FirebaseMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMock.swift; sourceTree = "<group>"; };
 		9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				5F5A537A1ADE67D500F81DF0 /* FriendlyChatSwift */,
-				714B013A1E79539700EBE1A1 /* FriendlyChatSwiftUITests */,
 				5F5A534D1ADE670C00F81DF0 /* Products */,
 				12DD0A4A089E5CEFC6F01148 /* Pods */,
 				9AD5D3AA9FEE4AAC1BAC7C5F /* Frameworks */,
@@ -121,6 +119,7 @@
 				2C595F041B34B73A00355AE7 /* Constants.swift */,
 				711D3DED1E78049B004522AF /* GoogleService-Info.plist */,
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
+				714B01431E7960D100EBE1A1 /* FirebaseMock.swift */,
 			);
 			path = FriendlyChatSwift;
 			sourceTree = "<group>";
@@ -141,15 +140,6 @@
 				714B01331E79535A00EBE1A1 /* Message.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		714B013A1E79539700EBE1A1 /* FriendlyChatSwiftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				714B013B1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift */,
-				714B013D1E79539700EBE1A1 /* Info.plist */,
-			);
-			path = FriendlyChatSwiftUITests;
 			sourceTree = "<group>";
 		};
 		9AD5D3AA9FEE4AAC1BAC7C5F /* Frameworks */ = {
@@ -330,6 +320,7 @@
 				714B01341E79535A00EBE1A1 /* Message.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
+				714B01441E7960D100EBE1A1 /* FirebaseMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +328,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714B013C1E79539700EBE1A1 /* FriendlyChatSwiftUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +547,7 @@
 				714B01421E79539700EBE1A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -18,6 +18,7 @@ import UIKit
 import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
+import FirebaseAuth
 
 // MARK: - FCViewController
 
@@ -424,3 +425,20 @@ extension FCViewController {
         NotificationCenter.default.removeObserver(self)
     }
 }
+
+protocol FIRAuthProtocol {
+    func signInAnonymously(completion: ((FIRUserProtocol?, Error?) -> Void)?)
+}
+
+extension FIRAuth: FIRAuthProtocol {
+    func signInAnonymously(completion: ((FIRUserProtocol?, Error?) -> Void)? = nil) {
+        let completion = completion as FIRAuthResultCallback?
+        signInAnonymously(completion: completion)
+    }
+}
+
+protocol FIRUserProtocol {
+    var uid: String { get }
+}
+extension FIRUser: FIRUserProtocol {}
+
