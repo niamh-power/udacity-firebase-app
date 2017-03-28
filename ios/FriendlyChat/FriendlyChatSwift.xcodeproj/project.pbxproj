@@ -16,6 +16,11 @@
 		711D3DEE1E78049B004522AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 711D3DED1E78049B004522AF /* GoogleService-Info.plist */; };
 		714B01341E79535A00EBE1A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B01331E79535A00EBE1A1 /* Message.swift */; };
 		714B01441E7960D100EBE1A1 /* FirebaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B01431E7960D100EBE1A1 /* FirebaseMock.swift */; };
+		7178D13E1E8A6F0B00B62722 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178D13D1E8A6F0B00B62722 /* SignInViewModel.swift */; };
+		71F463771E8A611F005F907B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F463761E8A611F005F907B /* SignInViewController.swift */; };
+		71F4637B1E8A6133005F907B /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4637A1E8A6133005F907B /* ChatRoomViewController.swift */; };
+		71F4637D1E8A613C005F907B /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4637C1E8A613C005F907B /* ChatRoomViewModel.swift */; };
+		71F4637F1E8A6180005F907B /* ChatRoomViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4637E1E8A6180005F907B /* ChatRoomViewData.swift */; };
 		A92476E81D6F96C300A96C4B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */; };
 		A92476E91D6F96C300A96C4B /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */; };
 		DBBAAE069585D787FD06FE15 /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */; };
@@ -45,6 +50,11 @@
 		714B01331E79535A00EBE1A1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		714B01391E79539700EBE1A1 /* FriendlyChatSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyChatSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		714B01431E7960D100EBE1A1 /* FirebaseMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMock.swift; sourceTree = "<group>"; };
+		7178D13D1E8A6F0B00B62722 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		71F463761E8A611F005F907B /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		71F4637A1E8A6133005F907B /* ChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		71F4637C1E8A613C005F907B /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
+		71F4637E1E8A6180005F907B /* ChatRoomViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomViewData.swift; sourceTree = "<group>"; };
 		9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
@@ -113,6 +123,8 @@
 		5F5A537A1ADE67D500F81DF0 /* FriendlyChatSwift */ = {
 			isa = PBXGroup;
 			children = (
+				71DAC9371E8965B20094C58E /* ChatRoom */,
+				71DAC9361E8965720094C58E /* SignIn */,
 				714B01321E79534F00EBE1A1 /* Models */,
 				5F5A537D1ADE67D500F81DF0 /* AppDelegate.swift */,
 				5F5A537F1ADE67D500F81DF0 /* FCViewController.swift */,
@@ -140,6 +152,25 @@
 				714B01331E79535A00EBE1A1 /* Message.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		71DAC9361E8965720094C58E /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				71F463761E8A611F005F907B /* SignInViewController.swift */,
+				7178D13D1E8A6F0B00B62722 /* SignInViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		71DAC9371E8965B20094C58E /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				71F4637A1E8A6133005F907B /* ChatRoomViewController.swift */,
+				71F4637C1E8A613C005F907B /* ChatRoomViewModel.swift */,
+				71F4637E1E8A6180005F907B /* ChatRoomViewData.swift */,
+			);
+			path = ChatRoom;
 			sourceTree = "<group>";
 		};
 		9AD5D3AA9FEE4AAC1BAC7C5F /* Frameworks */ = {
@@ -316,8 +347,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F4637D1E8A613C005F907B /* ChatRoomViewModel.swift in Sources */,
 				5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */,
 				714B01341E79535A00EBE1A1 /* Message.swift in Sources */,
+				71F4637F1E8A6180005F907B /* ChatRoomViewData.swift in Sources */,
+				7178D13E1E8A6F0B00B62722 /* SignInViewModel.swift in Sources */,
+				71F463771E8A611F005F907B /* SignInViewController.swift in Sources */,
+				71F4637B1E8A6133005F907B /* ChatRoomViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 				714B01441E7960D100EBE1A1 /* FirebaseMock.swift in Sources */,
