@@ -51,16 +51,34 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var imageDisplay: UIImageView!
     @IBOutlet var dismissImageRecognizer: UITapGestureRecognizer!
     @IBOutlet var dismissKeyboardRecognizer: UITapGestureRecognizer!
-    
+
+
+    var viewModel: FCViewModel?
+    var sendMessage: ((_ data: [String: String]) -> Void)?
+
     // MARK: Life Cycle
-    
+
     override func viewDidLoad() {
+        self.viewModel = FCViewModel(
+            databaseReference: FIRDatabase.database().reference(), firebaseRemoteConfig: FIRRemoteConfig.remoteConfig(),
+            storageReference: FIRStorage.storage().reference())
         configureAuth()
+        bindViewModel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromAllNotifications()
+    }
+
+    func bindViewModel() {
+        viewModel?.didAddChild = { [weak self] (snapshot: FIRDataSnapshot) in
+            self?.messages.append(snapshot)
+            self?.messagesTable.insertRows(at: [IndexPath(row: (self?.messages.count)! - 1, section: 0)], with: .automatic)
+            self?.scrollToBottomMessage()
+        }
+        sendMessage = viewModel?.sendMessage
+        viewModel?.ready()
     }
     
     // MARK: Config
@@ -84,16 +102,6 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
                 self.signedInStatus(isSignedIn: false)
                 self.loginSession()
             }
-        }
-    }
-    
-    func configureDatabase() {
-        ref = FIRDatabase.database().reference()
-        _refHandle = ref.child("messages").observe(.childAdded) {
-            (snapshot: FIRDataSnapshot) in
-                self.messages.append(snapshot)
-            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
-            self.scrollToBottomMessage()
         }
     }
     
@@ -156,7 +164,6 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             backgroundBlur.effect = nil
             messageTextField.delegate = self
             
-            configureDatabase()
             configureStorage()
             configureRemoteConfig()
         }
@@ -170,9 +177,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Send Message
     
     func sendMessage(data: [String:String]) {
-        var mdata = data
-        mdata[Constants.MessageFields.name] = displayName
-        ref.child("messages").childByAutoId().setValue(mdata)
+        sendMessage(data: data)
     }
     
     func sendPhotoMessage(photoData: Data) {
