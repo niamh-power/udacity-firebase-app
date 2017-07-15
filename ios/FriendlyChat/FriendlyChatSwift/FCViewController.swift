@@ -54,13 +54,14 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
 
 
     var viewModel: FCViewModel?
-    var sendMessage: ((_ data: [String: String]) -> Void)?
+    var sendMessageWithData: ((_ data: [String: String]) -> Void)?
 
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         self.viewModel = FCViewModel(
-            databaseReference: FIRDatabase.database().reference(), firebaseRemoteConfig: FIRRemoteConfig.remoteConfig(),
+            databaseReference: FIRDatabase.database().reference(),
+            firebaseRemoteConfig: FIRRemoteConfig.remoteConfig(),
             storageReference: FIRStorage.storage().reference())
         configureAuth()
         bindViewModel()
@@ -77,7 +78,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             self?.messagesTable.insertRows(at: [IndexPath(row: (self?.messages.count)! - 1, section: 0)], with: .automatic)
             self?.scrollToBottomMessage()
         }
-        sendMessage = viewModel?.sendMessage
+        sendMessageWithData = viewModel?.sendMessage
         viewModel?.ready()
     }
     
@@ -177,7 +178,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Send Message
     
     func sendMessage(data: [String:String]) {
-        sendMessage(data: data)
+        sendMessageWithData!(data)
     }
     
     func sendPhotoMessage(photoData: Data) {

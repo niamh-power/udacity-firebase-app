@@ -45,8 +45,10 @@ class FCViewModel {
     }
 
     func sendMessage(data: [String:String]) {
-        var mdata = data
-        mdata[Constants.MessageFields.name] = "Test"
-        databaseReference.child("messages").childByAutoId().setValue(mdata)
+        if Reachability().connectedToNetwork() {
+            var mdata = data
+            mdata[Constants.MessageFields.name] = "Test"
+            databaseReference.child("messages").childByAutoId().setValue(mdata)
+        }
     }
 }
