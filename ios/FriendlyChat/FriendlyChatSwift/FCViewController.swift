@@ -55,7 +55,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
 
     var viewModel: FCViewModel?
     var sendMessageWithData: ((_ data: [String: String]) -> Void)?
-
+    var sendPhotoMessage: ((_ data: Data) -> Void)?
     // MARK: Life Cycle
 
     override func viewDidLoad() {
@@ -79,6 +79,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             self?.scrollToBottomMessage()
         }
         sendMessageWithData = viewModel?.sendMessage
+        sendPhotoMessage = viewModel?.sendPhotoMessage
         viewModel?.ready()
     }
     
@@ -105,11 +106,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             }
         }
     }
-    
-    func configureStorage() {
-        storageRef = FIRStorage.storage().reference()
-    }
-    
+
     deinit {
         ref.child("messages").removeObserver(withHandle: _refHandle)
         FIRAuth.auth()?.removeStateDidChangeListener(_authHandle)
@@ -164,8 +161,6 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             messagesTable.estimatedRowHeight = 122.0
             backgroundBlur.effect = nil
             messageTextField.delegate = self
-            
-            configureStorage()
             configureRemoteConfig()
         }
     }
@@ -179,21 +174,6 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     
     func sendMessage(data: [String:String]) {
         sendMessageWithData!(data)
-    }
-    
-    func sendPhotoMessage(photoData: Data) {
-
-        let imagePath = "chat_photos/" + FIRAuth.auth()!.currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-        let metadata = FIRStorageMetadata()
-        metadata.contentType = "image/jpeg"
-
-        storageRef!.child(imagePath).put(photoData, metadata: metadata) { (metadata, error) in
-            if let error = error {
-                print("error uploading: \(error)")
-                return
-            }
-            self.sendMessage(data: [Constants.MessageFields.imageUrl: self.storageRef!.child((metadata?.path)!).description])
-        }
     }
     
     // MARK: Alert
@@ -343,10 +323,8 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
 extension FCViewController: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // constant to hold the information about the photo
         if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage, let photoData = UIImageJPEGRepresentation(photo, 0.8) {
-            // call function to upload photo message
-            sendPhotoMessage(photoData: photoData)
+            sendPhotoMessage!(photoData)
         }
         picker.dismiss(animated: true, completion: nil)
     }

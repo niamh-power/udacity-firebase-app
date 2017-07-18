@@ -16,6 +16,7 @@
 		711D3DEE1E78049B004522AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 711D3DED1E78049B004522AF /* GoogleService-Info.plist */; };
 		719D66CD1F16B4B3006086BD /* FCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719D66CC1F16B4B3006086BD /* FCViewModel.swift */; };
 		71F8B1851F1A42D400E08939 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8B1841F1A42D400E08939 /* Reachability.swift */; };
+		71F8B1871F1A447E00E08939 /* FCViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8B1861F1A447E00E08939 /* FCViewData.swift */; };
 		A92476E81D6F96C300A96C4B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */; };
 		A92476E91D6F96C300A96C4B /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */; };
 		DBBAAE069585D787FD06FE15 /* Pods_FriendlyChatSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */; };
@@ -45,6 +46,7 @@
 		714B01391E79539700EBE1A1 /* FriendlyChatSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyChatSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		719D66CC1F16B4B3006086BD /* FCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCViewModel.swift; sourceTree = "<group>"; };
 		71F8B1841F1A42D400E08939 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		71F8B1861F1A447E00E08939 /* FCViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCViewData.swift; sourceTree = "<group>"; };
 		9EE776B645030DD333883549 /* Pods_FriendlyChatSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyChatSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92476E61D6F96C300A96C4B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		A92476E71D6F96C300A96C4B /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				5F5A537B1ADE67D500F81DF0 /* Supporting Files */,
 				719D66CC1F16B4B3006086BD /* FCViewModel.swift */,
 				71F8B1841F1A42D400E08939 /* Reachability.swift */,
+				71F8B1861F1A447E00E08939 /* FCViewData.swift */,
 			);
 			path = FriendlyChatSwift;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				5F5A53801ADE67D500F81DF0 /* FCViewController.swift in Sources */,
 				5F5A537E1ADE67D500F81DF0 /* AppDelegate.swift in Sources */,
 				719D66CD1F16B4B3006086BD /* FCViewModel.swift in Sources */,
+				71F8B1871F1A447E00E08939 /* FCViewData.swift in Sources */,
 				71F8B1851F1A42D400E08939 /* Reachability.swift in Sources */,
 				2C595F061B34B73A00355AE7 /* Constants.swift in Sources */,
 			);
