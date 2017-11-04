@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">flux-pos</string>
+    <string name="title_menuitem_detail">Menu Item Detail</string>
+</resources>

@@ -63,7 +63,7 @@ class FCViewModel {
     func sendPhotoMessage(photoData: Data) {
         if let currentUser = FIRAuth.auth()?.currentUser {
             let timestamp = "\(Double(Date.timeIntervalSinceReferenceDate * 1000))"
-            let imagePath = "chat_photos/" + currentUser.uid + "/" + timestamp + ".jpg"
+            let imagePath = currentUser.uid + "/" + timestamp + ".jpg"
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/jpeg"
 
@@ -71,7 +71,7 @@ class FCViewModel {
                 if let error = error { print("error uploading: \(error)")}
 
                 self?.sendMessage(data: [Constants.MessageFields.imageUrl:
-                                         self?.storageReference!.child((metadata?.path)!).description])
+                    (self?.storageReference.child((metadata?.path)!).description)!])
             }
         }
     }
