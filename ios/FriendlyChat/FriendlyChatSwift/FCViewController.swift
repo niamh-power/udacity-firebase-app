@@ -18,6 +18,7 @@ import UIKit
 import Firebase
 import FirebaseAuthUI
 import FirebaseGoogleAuthUI
+import FirebaseAuth
 
 // MARK: - FCViewController
 
@@ -50,16 +51,36 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var imageDisplay: UIImageView!
     @IBOutlet var dismissImageRecognizer: UITapGestureRecognizer!
     @IBOutlet var dismissKeyboardRecognizer: UITapGestureRecognizer!
-    
+
+
+    var viewModel: FCViewModel?
+    var sendMessageWithData: ((_ data: [String: String]) -> Void)?
+    var sendPhotoMessage: ((_ data: Data) -> Void)?
     // MARK: Life Cycle
-    
+
     override func viewDidLoad() {
+        self.viewModel = FCViewModel(
+            databaseReference: FIRDatabase.database().reference(),
+            firebaseRemoteConfig: FIRRemoteConfig.remoteConfig(),
+            storageReference: FIRStorage.storage().reference())
         configureAuth()
+        bindViewModel()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromAllNotifications()
+    }
+
+    func bindViewModel() {
+        viewModel?.didAddChild = { [weak self] (snapshot: FIRDataSnapshot) in
+            self?.messages.append(snapshot)
+            self?.messagesTable.insertRows(at: [IndexPath(row: (self?.messages.count)! - 1, section: 0)], with: .automatic)
+            self?.scrollToBottomMessage()
+        }
+        sendMessageWithData = viewModel?.sendMessage
+        sendPhotoMessage = viewModel?.sendPhotoMessage
+        viewModel?.ready()
     }
     
     // MARK: Config
@@ -85,21 +106,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             }
         }
     }
-    
-    func configureDatabase() {
-        ref = FIRDatabase.database().reference()
-        _refHandle = ref.child("messages").observe(.childAdded) {
-            (snapshot: FIRDataSnapshot) in
-                self.messages.append(snapshot)
-            self.messagesTable.insertRows(at: [IndexPath(row: self.messages.count - 1, section: 0)], with: .automatic)
-            self.scrollToBottomMessage()
-        }
-    }
-    
-    func configureStorage() {
-        storageRef = FIRStorage.storage().reference()
-    }
-    
+
     deinit {
         ref.child("messages").removeObserver(withHandle: _refHandle)
         FIRAuth.auth()?.removeStateDidChangeListener(_authHandle)
@@ -154,9 +161,6 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
             messagesTable.estimatedRowHeight = 122.0
             backgroundBlur.effect = nil
             messageTextField.delegate = self
-            
-            configureDatabase()
-            configureStorage()
             configureRemoteConfig()
         }
     }
@@ -169,24 +173,7 @@ class FCViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Send Message
     
     func sendMessage(data: [String:String]) {
-        var mdata = data
-        mdata[Constants.MessageFields.name] = displayName
-        ref.child("messages").childByAutoId().setValue(mdata)
-    }
-    
-    func sendPhotoMessage(photoData: Data) {
-
-        let imagePath = "chat_photos/" + FIRAuth.auth()!.currentUser!.uid + "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-        let metadata = FIRStorageMetadata()
-        metadata.contentType = "image/jpeg"
-
-        storageRef!.child(imagePath).put(photoData, metadata: metadata) { (metadata, error) in
-            if let error = error {
-                print("error uploading: \(error)")
-                return
-            }
-            self.sendMessage(data: [Constants.MessageFields.imageUrl: self.storageRef!.child((metadata?.path)!).description])
-        }
+        sendMessageWithData!(data)
     }
     
     // MARK: Alert
@@ -336,10 +323,8 @@ extension FCViewController: UITableViewDelegate, UITableViewDataSource {
 extension FCViewController: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // constant to hold the information about the photo
         if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage, let photoData = UIImageJPEGRepresentation(photo, 0.8) {
-            // call function to upload photo message
-            sendPhotoMessage(photoData: photoData)
+            sendPhotoMessage!(photoData)
         }
         picker.dismiss(animated: true, completion: nil)
     }

@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "714B01381E79539700EBE1A1"
+               BuildableName = "FriendlyChatSwiftUITests.xctest"
+               BlueprintName = "FriendlyChatSwiftUITests"
+               ReferencedContainer = "container:FriendlyChatSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
